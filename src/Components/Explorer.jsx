@@ -9,8 +9,8 @@ const Explorer = ({ data }) => {
   return (
     <>
       {schemas[0] &&
-        schemas.map((x) => (
-          <div className="flex flex-col p-5 pb-0" key={x.schema}>
+        schemas.map((x,index) => (
+          <div className="flex flex-col p-5 pb-0" key={index}>
             <div id="Schema" className="flex gap-2 mb-1">
               <FolderOpenOutlinedIcon />
               <span>{x.schema}</span>
@@ -25,9 +25,7 @@ const Explorer = ({ data }) => {
                 {x.tables[0] && show===1 && (
                   <ul className="text-center">
                     {x.tables.map((item,index) => (
-                      <>
                         <li key={index}>{item}</li>
-                      </>
                     ))}
                   </ul>
                 )}
