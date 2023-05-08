@@ -1,18 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-const CodeEditor = ({onDataChange}) => {
-  const [code, setCode] = useState('');
-  
+const CodeEditor = ({ onDataChange }) => {
+  const [code, setCode] = useState("");
+
   const handleChange = (e) => {
     setCode(e.target.value);
     onDataChange(e.target.value);
-  }
+  };
 
   return (
     <div className="flex flex-row bg-gray-100">
       <div className="w-16 h-full flex flex-col justify-start items-center">
         {Array.from({ length: 20 }).map((_, index) => (
-          <div key={index} className="text-gray-600 text-sm font-mono">{index + 1}</div>
+          <div key={index} className="text-gray-600 text-sm font-mono">
+            {index + 1}
+          </div>
         ))}
       </div>
       <textarea
