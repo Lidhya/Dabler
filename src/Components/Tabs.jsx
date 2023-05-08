@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import DataObjectIcon from "@mui/icons-material/DataObject";
 import TuneIcon from '@mui/icons-material/Tune';
 import Code from "./Code";
@@ -10,7 +10,7 @@ const Tabs = () => {
  
   return (
     <>
-    <div className="mx-7 gap-5 bg-none -bottom-3 flex justify-start align-middle text-gray-700 relative">
+    <div className="mx-7 gap-5 bg-none -bottom-3 flex justify-start align-middle text-gray-700 relative ">
       <div id="details" className={`pb-3 px-3 font-medium flex items-center  cursor-pointer  ${tab ===1 && 'border-b-2 border-gray-700'}`}   onClick={() => setTab(1)}>
         <DataObjectIcon />
         <span>Details</span>
