@@ -9,9 +9,9 @@ const CodeEditor = ({ onDataChange }) => {
   };
 
   return (
-    <div className="flex flex-row bg-gray-100">
-      <div className="w-16 h-full flex flex-col justify-start items-center">
-        {Array.from({ length: 20 }).map((_, index) => (
+    <div className="flex flex-row">
+      <div className="w-16 flex flex-col justify-start items-center">
+        {Array.from({ length: 15 }).map((_, index) => (
           <div key={index} className="text-gray-600 text-sm font-mono">
             {index + 1}
           </div>

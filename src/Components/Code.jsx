@@ -33,23 +33,24 @@ const Code = () => {
   const handleRun = (e) => {
     e.preventDefault();
     try {
-      fetch("https://transform.dabler.app/api/test/queryRun", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          datawarehouse: "SNOWFLAKE-DEV",
-          query: code,
-        }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-          setTableData(data.result);
-          setErr("");
+      code &&
+        fetch("https://transform.dabler.app/api/test/queryRun", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            datawarehouse: "SNOWFLAKE-DEV",
+            query: code,
+          }),
         })
-        .catch((error) => setErr(error.message));
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            setTableData(data.result);
+            setErr("");
+          })
+          .catch((error) => setErr(error.message));
     } catch (error) {
       setErr(error.message);
       console.log(error.message);
@@ -76,18 +77,18 @@ const Code = () => {
         </button>
       </div>
       <div className="h-3/6 flex gap-2">
-        <div className="h-full w-1/5 bg-white m-1">
+        <div className=" w-1/5 bg-white m-1 rounded">
           {data &&
             data.map(
               (items) =>
                 items.schemas[0] && <Explorer key={items._id} data={items} />
             )}
         </div>
-        <div className="h-full w-4/5 bg-white m-1">
+        <div className=" w-4/5 bg-white m-1 rounded">
           <CodeEditor onDataChange={handleDataChange} />
         </div>
       </div>
-      <div className="h-2/6 bg-white m-2 overflow-scroll">
+      <div className="h-2/6 bg-white m-2 p-2 pt-0 overflow-scroll rounded">
         {tableData[0] ? (
           <Table data={tableData} />
         ) : (

@@ -10,15 +10,15 @@ const Explorer = ({ data }) => {
     <>
       {schemas[0] &&
         schemas.map((x, index) => (
-          <div className="flex flex-col p-5 pb-0" key={index}>
-            <div id="Schema" className="flex gap-2 mb-1">
+          <div className="flex flex-col p-5 pb-0 flex-wrap" key={index}>
+            <div id="Schema" className="flex gap-2 mb-1 flex-wrap">
               <FolderOpenOutlinedIcon />
               <span>{x.schema}</span>
             </div>
             <ul>
-              <li className="flex flex-col m-1 ">
+              <li className="flex flex-col flex-wrap m-1 ">
                 <div
-                  className="flex gap-2 "
+                  className="flex gap-2 flex-wrap"
                   onClick={() => {
                     show !== 1
                       ? setShow(1)
@@ -39,9 +39,9 @@ const Explorer = ({ data }) => {
                   </ul>
                 )}
               </li>
-              <li className="flex flex-col m-1 ">
+              <li className="flex flex-col m-1 flex-wrap">
                 <div
-                  className="flex gap-2 "
+                  className="flex gap-2 flex-wrap"
                   onClick={() => {
                     show !== 2
                       ? setShow(2)
