@@ -1,24 +1,30 @@
-import Sidebar from './Components/Sidebar';
+import React from "react";
+import {createBrowserRouter, RouterProvider} from "react-router-dom"
+import Layout from './Pages/Layout';
+import Default from './Pages/Default';
+import Projects from './Pages/Projects';
 
 function App() {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: (
+            <Layout />
+      ),
+      children: [
+        {
+          path: "/",
+          element: <Default />,
+        },
+        {
+          path: "/projects",
+          element: <Projects />,
+        }
+      ],
+    },
+  ])
   return (
-    <div className="flex h-screen bg-off-white">
-      <div className="w-1/6 h-full bg-dark-grey">
-      <Sidebar/>
-      </div>
-      <div className="w-5/6 flex flex-col ">
-        <div className='h-1/6'>topbar</div>
-        <div className="h-3/6 flex gap-2">
-          <div className="h-full w-1/5 bg-white">
-          </div>
-          <div className="h-full w-4/5 bg-white">
-          </div>
-        </div>
-        <div className="h-2/6 bg-white">
-          {/* Bottom content goes here */}
-        </div>
-      </div>
-    </div>
+   <> <RouterProvider router={router} /></>
   );
 }
 
