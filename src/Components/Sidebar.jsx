@@ -4,7 +4,7 @@ import ArticleIcon from "@mui/icons-material/Article";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import SettingsIcon from "@mui/icons-material/Settings";
 import ImportContactsIcon from "@mui/icons-material/ImportContacts";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   const [active, setActive] = useState(0);
@@ -13,7 +13,7 @@ const Sidebar = () => {
   const route = parts[1];
   useEffect(() => {
     if (route === "projects") setActive(2);
-  }, []);
+  }, [route]);
   return (
     <div className=" flex flex-col w-full h-1/2 items-center justify-start">
       <div className="h-2/6 bg-light-blue w-full mb-3">
