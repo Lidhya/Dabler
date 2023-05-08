@@ -1,21 +1,20 @@
-import React from "react";
+import React from 'react';
 
-function Table(props) {
-  const { data, headers } = props;
-
+const Table = ({ data }) => {
+  console.log(data);
   return (
-    <table>
-      <thead>
+    <table >
+      <thead className='sticky top-0 z-10 bg-white'>
         <tr>
-          {headers.map((header, index) => (
-            <th key={index}>{header}</th>
+          {Object.keys(data[0]).map((key, index) => (
+            <th key={index}>{key.toUpperCase()}</th>
           ))}
         </tr>
       </thead>
-      <tbody>
-        {data.map((row, index) => (
+      <tbody >
+        {data.map((item, index) => (
           <tr key={index}>
-            {Object.values(row).map((value, index) => (
+            {Object.values(item).map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
@@ -23,6 +22,6 @@ function Table(props) {
       </tbody>
     </table>
   );
-}
+};
 
 export default Table;
