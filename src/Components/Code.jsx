@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Explorer from "./Explorer";
 import CodeEditor from "./CodeEditor/CodeEditor";
-import Table from "./Table";
+import Table from "./Table/Table";
 
 const Code = () => {
   const [data, setData] = useState([]);
@@ -89,19 +89,19 @@ const Code = () => {
           TEST RUN
         </button>
       </div>
-      <div className="h-3/6 flex gap-2">
-        <div className="h-full w-1/5 bg-white m-1 rounded">
+      <div className="h-3/6 flex gap-2 ">
+        <div className="h-full w-1/5 bg-white  rounded">
           {data &&
             data.map(
               (items) =>
                 items.schemas[0] && <Explorer key={items._id} data={items} setCode={setCode}/>
             )}
         </div>
-        <div className="h-fit w-4/5 bg-white m-1 rounded">
+        <div className="h-fit w-4/5 bg-white  rounded">
           <CodeEditor onDataChange={handleDataChange} initialCode={code}/>
         </div>
       </div>
-      <div className="h-2/6 bg-white m-2 p-2 pt-0 rounded">
+      <div className="h-2/6 m-2 ">
         {tableData[0] ? (
           <Table data={tableData} />
         ) : (

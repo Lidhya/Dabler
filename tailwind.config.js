@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       height: {
         92: "22rem",
+        51: "12rem"
       },
       colors: {
         "dark-grey": "#292F36",
