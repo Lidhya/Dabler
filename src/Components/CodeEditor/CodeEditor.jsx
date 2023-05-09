@@ -1,38 +1,37 @@
-import React, { useState } from 'react';
-import "ace-builds/src-noconflict/ace"
+import React, { useState } from "react";
+import "ace-builds/src-noconflict/ace";
 // import "ace-builds/src-noconflict/theme-monokai"
-import "ace-builds/src-noconflict/theme-cloud9_day"
-import "ace-builds/src-noconflict/mode-javascript"
-import AceEditor from "react-ace"
-import "ace-builds/webpack-resolver"
-import "ace-builds/src-min-noconflict/ext-searchbox"
-import "ace-builds/src-min-noconflict/ext-language_tools"
-import "ace-builds/src-min-noconflict/ext-beautify"
-import "./CodeEditor.css"
+import "ace-builds/src-noconflict/theme-cloud9_day";
+import "ace-builds/src-noconflict/mode-javascript";
+import AceEditor from "react-ace";
+import "ace-builds/webpack-resolver";
+import "ace-builds/src-min-noconflict/ext-searchbox";
+import "ace-builds/src-min-noconflict/ext-language_tools";
+import "ace-builds/src-min-noconflict/ext-beautify";
+import "./CodeEditor.css";
 
-function CodeEditor() {
-  const [code, setCode] = useState('');
+function CodeEditor({ onDataChange }) {
+  const [code, setCode] = useState("");
   const handleEditorChange = (newValue) => {
-    console.log('change', newValue);
     setCode(newValue);
+    onDataChange(newValue);
   };
 
   return (
-    <div className='overflow-hidden  rounded' >
-    <AceEditor
-  mode="javascript"
-  theme="cloud9_day"
-  name="my-editor"
-  onChange={handleEditorChange}
-  fontSize={14}
-  showPrintMargin={true}
-  showGutter={true}
-  highlightActiveLine={true}
-  value={code}
-  editorProps={{
-    $blockScrolling: true
-  }}
-/></div>
+    <div className="overflow-hidden rounded">
+      <AceEditor
+        mode="javascript"
+        theme="cloud9_day"
+        name="my-editor"
+        onChange={handleEditorChange}
+        fontSize={14}
+        highlightActiveLine={true}
+        value={code}
+        editorProps={{
+          $blockScrolling: true,
+        }}
+      />
+    </div>
   );
 }
 export default CodeEditor;
@@ -77,5 +76,3 @@ export default CodeEditor;
 // }
 
 // export default CodeEditor;
-
-
