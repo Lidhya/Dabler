@@ -14,6 +14,13 @@ const Code = () => {
   };
 
   useEffect(() => {
+    if (code === "") {
+      setTableData([]);
+      setErr("");
+    }
+  }, [code]);
+
+  useEffect(() => {
     try {
       fetch(
         "https://transform.dabler.app/api/test/getdbobjects?datawarehouse=SNOWFLAKE-DEV"
@@ -23,6 +30,7 @@ const Code = () => {
           setData(data);
           setErr("");
         })
+        .catch((error) => setErr(error.message))
         .catch((error) => setErr(error.message));
     } catch (error) {
       setErr(error.message);
@@ -33,7 +41,7 @@ const Code = () => {
   const handleRun = (e) => {
     e.preventDefault();
     try {
-      code &&
+      if (code) {
         fetch("https://transform.dabler.app/api/test/queryRun", {
           method: "POST",
           headers: {
@@ -44,13 +52,20 @@ const Code = () => {
             query: code,
           }),
         })
-          .then((response) => response.json())
+          .then((response) => {
+            response.json();
+          })
           .then((data) => {
             console.log(data);
             setTableData(data.result);
             setErr("");
           })
+          .catch((error) => setErr(error.message))
           .catch((error) => setErr(error.message));
+      } else {
+        setTableData([]);
+        setErr("");
+      }
     } catch (error) {
       setErr(error.message);
       console.log(error.message);
