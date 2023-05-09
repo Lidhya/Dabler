@@ -3,6 +3,9 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      height: {
+        92: "22rem",
+      },
       colors: {
         "dark-grey": "#292F36",
         "off-white": "#F7F9FB",

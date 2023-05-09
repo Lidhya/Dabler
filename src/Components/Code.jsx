@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Explorer from "./Explorer";
-import CodeEditor from "./CodeEditor";
+import CodeEditor from "./CodeEditor/CodeEditor";
 import Table from "./Table";
 
 const Code = () => {
@@ -89,14 +89,14 @@ const Code = () => {
         </button>
       </div>
       <div className="h-3/6 flex gap-2">
-        <div className=" w-1/5 bg-white m-1 rounded">
+        <div className="h-full w-1/5 bg-white m-1 rounded">
           {data &&
             data.map(
               (items) =>
                 items.schemas[0] && <Explorer key={items._id} data={items} />
             )}
         </div>
-        <div className=" w-4/5 bg-white m-1 rounded">
+        <div className="h-fit w-4/5 bg-white m-1 rounded">
           <CodeEditor onDataChange={handleDataChange} />
         </div>
       </div>
