@@ -101,7 +101,7 @@ const Code = () => {
           <CodeEditor onDataChange={handleDataChange} initialCode={code}/>
         </div>
       </div>
-      <div className="h-2/6 bg-white m-2 p-2 pt-0 overflow-scroll rounded">
+      <div className="h-2/6 bg-white m-2 p-2 pt-0 rounded">
         {tableData[0] ? (
           <Table data={tableData} />
         ) : (
