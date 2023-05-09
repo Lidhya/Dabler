@@ -52,11 +52,8 @@ const Code = () => {
             query: code,
           }),
         })
-          .then((response) => {
-            response.json();
-          })
+          .then((response) => response.json())
           .then((data) => {
-            console.log(data);
             setTableData(data.result);
             setErr("");
           })
@@ -79,7 +76,7 @@ const Code = () => {
           className="absolute left-1/2 transform -translate-x-1/2 top-3 p-4 mb-4 text-sm text-white rounded-lg bg-red-500"
           role="alert"
         >
-          <span class="font-medium">{err}</span>
+          <span className="font-medium">{err}</span>
         </div>
       )}
       <div className="text-end  mx-6">
