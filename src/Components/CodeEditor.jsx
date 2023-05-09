@@ -1,29 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from 'react';
 
-const CodeEditor = ({ onDataChange }) => {
-  const [code, setCode] = useState("");
+function CodeEditor({ onDataChange }) {
+  const [code, setCode] = useState('');
+  const textareaRef = useRef(null);
 
-  const handleChange = (e) => {
+  const handleCodeChange = (e) => {
     setCode(e.target.value);
     onDataChange(e.target.value);
   };
 
+  const handleScroll = () => {
+    const lineNumberWrapper = textareaRef.current.previousSibling;
+    lineNumberWrapper.scrollTop = textareaRef.current.scrollTop;
+  };
+
+  const lines = code.split('\n').map((line, index) => (
+    <div key={index} className="h-6 text-gray-400 text-right pr-2">
+      {index + 1}
+    </div>
+  ));
+
   return (
-    <div className="flex flex-row">
-      <div className="w-16 flex flex-col justify-start items-center">
-        {Array.from({ length: 15 }).map((_, index) => (
-          <div key={index} className="text-gray-600 text-sm font-mono">
-            {index + 1}
-          </div>
-        ))}
+    <div className="flex h-full w-full">
+      <div className="w-10  text-gray-400 flex flex-col items-end justify-start">
+        {lines}
       </div>
       <textarea
-        className="flex-1 bg-transparent outline-none p-2 font-mono text-sm resize-none"
+        placeholder='// Enter your query here...'
+        ref={textareaRef}
         value={code}
-        onChange={handleChange}
+        onChange={handleCodeChange}
+        onScroll={handleScroll}
+        className="flex-1 bg-white text-black  resize-none focus:outline-none"
       />
     </div>
   );
-};
+}
 
 export default CodeEditor;
