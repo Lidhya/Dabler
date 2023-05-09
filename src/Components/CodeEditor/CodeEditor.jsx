@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "ace-builds/src-noconflict/ace";
 // import "ace-builds/src-noconflict/theme-monokai"
 import "ace-builds/src-noconflict/theme-cloud9_day";
@@ -10,12 +10,16 @@ import "ace-builds/src-min-noconflict/ext-language_tools";
 import "ace-builds/src-min-noconflict/ext-beautify";
 import "./CodeEditor.css";
 
-function CodeEditor({ onDataChange }) {
-  const [code, setCode] = useState("");
+function CodeEditor({ onDataChange, initialCode }) {
+  const [code, setCode] = useState(initialCode || "");
   const handleEditorChange = (newValue) => {
     setCode(newValue);
     onDataChange(newValue);
   };
+
+  useEffect(() => {
+    setCode(initialCode);
+  }, [initialCode]);
 
   return (
     <div className="overflow-hidden rounded">

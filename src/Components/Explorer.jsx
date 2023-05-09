@@ -3,9 +3,15 @@ import FolderIcon from "@mui/icons-material/Folder";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import FolderOpenOutlinedIcon from "@mui/icons-material/FolderOpenOutlined";
 
-const Explorer = ({ data }) => {
+const Explorer = ({ data, setCode }) => {
   const [show, setShow] = useState(0);
-  const { schemas } = data;
+  const { schemas, database } = data;
+  const handleClick = (schemaName, item) => {
+    const DB_NAME = database.toLowerCase();
+    const SCHEMA = schemaName.toLowerCase();
+    const ITEM_NAME = item.toLowerCase();
+    setCode(`select * from ${DB_NAME}.${SCHEMA}.${ITEM_NAME}`);
+  };
   return (
     <>
       {schemas[0] &&
@@ -34,7 +40,9 @@ const Explorer = ({ data }) => {
                 {x.tables[0] && show === 1 && (
                   <ul className="text-center">
                     {x.tables.map((item, index) => (
-                      <li key={index}>{item}</li>
+                      <li className="cursor-pointer" key={index} onClick={() => handleClick(x.schema, item)}>
+                        {item}
+                      </li>
                     ))}
                   </ul>
                 )}

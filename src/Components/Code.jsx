@@ -27,6 +27,7 @@ const Code = () => {
       )
         .then((response) => response.json())
         .then((data) => {
+          console.log(data);
           setData(data);
           setErr("");
         })
@@ -93,11 +94,11 @@ const Code = () => {
           {data &&
             data.map(
               (items) =>
-                items.schemas[0] && <Explorer key={items._id} data={items} />
+                items.schemas[0] && <Explorer key={items._id} data={items} setCode={setCode}/>
             )}
         </div>
         <div className="h-fit w-4/5 bg-white m-1 rounded">
-          <CodeEditor onDataChange={handleDataChange} />
+          <CodeEditor onDataChange={handleDataChange} initialCode={code}/>
         </div>
       </div>
       <div className="h-2/6 bg-white m-2 p-2 pt-0 overflow-scroll rounded">
